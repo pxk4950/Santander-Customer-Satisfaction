@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.png" alt="UTA Logo" width="200"/>
+  <img src="visuals/logo.png" alt="UTA Logo" width="200"/>
 </p>
 
 # Santander Customer Satisfaction
@@ -31,21 +31,19 @@ The objective of the Kaggle challenge is to predict customer dissatisfaction usi
 
 To better understand the dataset and model performance, I visualized key aspects of the data and results:
 
----
 
 #### Feature Distributions
 
 I began by examining the distributions of all features. Below is a sample of two representative features:
 
 ![Feature 1 Distribution](visuals/1.png)  
-*Feature 1 Distribution*
+<p align="center">Feature 1 Distribution</p>
 
 ![Feature 2 Distribution](visuals/2.png)  
-*Feature 2 Distribution*
+<p align="center">Feature 2 Distribution</p>
 
-> These distributions are typical of other features in the dataset, most of which are numeric and centered around 0 with varying spread. No major outliers were found, but feature selection remain important for optimal model performance.
+>These distributions are typical of other features in the dataset, most of which are numeric and centered around 0 with varying spread. No major outliers were found, but feature selection remain important for optimal model performance.
 
----
 
 #### Class Imbalance & Balancing
 
@@ -86,8 +84,6 @@ Among the resampling techniques:
 
 > Balancing the dataset improved recall for the minority class, ensuring the model is not biased toward predicting only satisfied customers.
 
----
-
 #### ROC Curve Comparison
 
 To evaluate the performance of the models (Random Forest and XGBoost), their ROC curves are:
@@ -99,11 +95,23 @@ To evaluate the performance of the models (Random Forest and XGBoost), their ROC
 
 
 ## Problem Formulation
+The goal of this project is to predict customer satisfaction based on anonymized customer data provided by Santander Bank. This is a **binary classification** problem where each customer is labeled as either satisfied (`0`) or dissatisfied (`1`).  
 
 - **Input**: anonymized numerical features.
 - **Output**: Binary prediction (0 = satisfied, 1 = dissatisfied).
 
-### Models
+**Objective:**  
+Build a predictive model that accurately identifies dissatisfied customers so that the bank can proactively improve customer experience and retention.
+
+**Challenges:**
+- Severe class imbalance makes it difficult to detect dissatisfied customers.
+- Features are anonymized, making domain-specific feature engineering impossible.
+- High dimensionality increases the risk of overfitting and demands effective feature selection.
+
+The project applies various preprocessing techniques, balancing strategies (e.g., class weighting), and machine learning models (Random Forest, XGBoost) to address these challenges and optimize both accuracy and recall for the minority class.
+
+
+## Models
 
 The following models were developed and evaluated:
 
@@ -113,7 +121,6 @@ The following models were developed and evaluated:
 Theese models are generally used for the classification problems and as this was a classification problem too, I decided to train on theese models.
 
 Evaluation metrics included `accuracy`, `log loss`, `precision`, `recall`, and `ROC-AUC`.
-
 
 
 ##  Training
@@ -150,8 +157,7 @@ To reproduce the results:
 4. Run the notebook [`DataCleaning.ipynb`](DataCleaning.ipynb) to preprocess and clean the data.
 5.  Execute [`DataVisualization.ipynb`](DataVisualization.ipynb) to see visualizations
 6. Run the notebook [`MachineLearning.ipynb`](MachineLearning.ipynb) to train models and evaluate results.
----
-   
+
 ## Future Work
 
 - Application of advanced resampling techniques.
@@ -163,9 +169,8 @@ To reproduce the results:
 - [README.md](README.md): A general overview of the project, including background, methodology, and results.
 - [DataCleaning.ipynb](DataCleaning.ipynb): Data loading, preprocessing, and cleaning are performed in this notebook. Constant and duplicate features are removed, and class imbalance is addressed.
 - [MachineLearning.ipynb](MachineLearning.ipynb): Random Forest and XGBoost models are trained, evaluated, and applied to the test dataset.
-- [DataVisualization.ipynb](DataVisualization.ipynb): Exploratory data analysis is conducted through feature histograms. 
-
----
+- [DataVisualization.ipynb](DataVisualization.ipynb): Exploratory data analysis is conducted through feature histograms.
+- [visuals](visuals): Contains `png` images of the visuals used in [README.md](README.md)
 
 
 ## Software Setup
