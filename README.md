@@ -37,10 +37,10 @@ To better understand the dataset and model performance, I visualized key aspects
 
 I began by examining the distributions of all features. Below is a sample of two representative features:
 
-![Feature 1 Distribution](visuals/2.png)  
+![Feature 1 Distribution](visuals/1.png)  
 *Feature 1 Distribution*
 
-![Feature 2 Distribution](visuals/3.png)  
+![Feature 2 Distribution](visuals/2.png)  
 *Feature 2 Distribution*
 
 > These distributions are typical of other features in the dataset, most of which are numeric and centered around 0 with varying spread. No major outliers were found, but feature selection remain important for optimal model performance.
@@ -60,7 +60,7 @@ To address this, we evaluated multiple balancing techniques, including SMOTE, un
 
 **Model Comparison of Balancing Techniques:**
 
-![Balancing Comparison](comparison.png)  
+![Balancing Comparison](visuals/comparison.png)  
 Based on the evaluation metrics, Class Weighted sampling emerges as the most suitable approach for this task. While the baseline model showed the highest ROC-AUC, it performed extremely poorly in identifying dissatisfied customers, with a recall close to 1% and an F1-score near zero.  
 
 Among the resampling techniques:  
@@ -92,7 +92,7 @@ Among the resampling techniques:
 
 To evaluate the performance of the models (Random Forest and XGBoost), their ROC curves are:
 
-![ROC Curve](roc_curve.png)  
+![ROC Curve](visuals/roc_curve.png)  
 *ROC curves for both models — XGBoost outperforms Random Forest in AUC*
 
 > The ROC curves show that XGBoost achieves a slightly better true positive rate at most thresholds, confirming its strength for this binary classification task.
