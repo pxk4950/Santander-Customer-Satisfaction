@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logo.png" alt="UTA Logo" width="200"/>
+</p>
+
 # Santander Customer Satisfaction
 
 
@@ -8,7 +12,7 @@ This repository contains an attempt to predict customer satisfaction for Santand
 ## Overview
 
 
-The objective of the Kaggle challenge is to predict customer dissatisfaction using anonymized numerical features representing customer behavior. The dataset consists of more than 76,000 customer records and a binary target variable indicating satisfaction. The task was approached as a **binary classification problem**. Data preprocessing, exploration, and cleaning were conducted, followed by training and evaluation of machine learning model, **Random Forests, and XGBoost**. The imbalance in the dataset was addressed through class weighting. Feature selection techniques were applied to enhance generalization. The best performance was achieved using an XGBoost model with an accuracy of 96 percentage and a AUC-score of 0.81. At this time, the heighest AUC-score on Kaggle Subnission is 0.82.
+The objective of the Kaggle challenge is to predict customer dissatisfaction using anonymized numerical features representing customer behavior. The dataset consists of more than 76,000 customer records and a binary target variable indicating satisfaction. The task was approached as a **binary classification problem**. Data preprocessing, exploration, and cleaning were conducted, followed by training and evaluation of machine learning model, **Random Forests, and XGBoost**. The imbalance in the dataset was addressed through class weighting. Feature selection techniques were applied to enhance generalization. The best performance was achieved using an XGBoost model with an accuracy of 96 percentage and a AUC-score of 0.81. At this time, the highest AUC-score on Kaggle Subnission is 0.82.
 
 
 ## Summary of Workdone
@@ -25,11 +29,73 @@ The objective of the Kaggle challenge is to predict customer dissatisfaction usi
 
 ### Data Visualization
 
-- Visualizations included:
-  - Histogram of all features
-  - Class distribution (notably imbalanced)
-  - ROC curve of Random Forest and Xgboost Models
+To better understand the dataset and model performance, I visualized key aspects of the data and results:
 
+---
+
+#### Feature Distributions
+
+I began by examining the distributions of all features. Below is a sample of two representative features:
+
+![Feature 1 Distribution](visuals/2.png)  
+*Feature 1 Distribution*
+
+![Feature 2 Distribution](visuals/3.png)  
+*Feature 2 Distribution*
+
+> These distributions are typical of other features in the dataset, most of which are numeric and centered around 0 with varying spread. No major outliers were found, but feature selection remain important for optimal model performance.
+
+---
+
+#### Class Imbalance & Balancing
+
+The target variable (`satisfaction`) was significantly imbalanced, with a large majority of samples labeled as satisfied customers. This imbalance can bias the model toward predicting the dominant class.
+
+**Before balancing:**
+
+![Imbalanced Class Distribution](visuals/imbalanced.png)  
+*Highly imbalanced data — majority of customers are labeled satisfied (0)*
+
+To address this, we evaluated multiple balancing techniques, including SMOTE, undersampling, and class weighting. After testing different models on each approach, the results showed that **class weighting** yielded better overall performance on validation metrics compared to oversampling methods.
+
+**Model Comparison of Balancing Techniques:**
+
+![Balancing Comparison](comparison.png)  
+Based on the evaluation metrics, Class Weighted sampling emerges as the most suitable approach for this task. While the baseline model showed the highest ROC-AUC, it performed extremely poorly in identifying dissatisfied customers, with a recall close to 1% and an F1-score near zero.  
+
+Among the resampling techniques:  
+
++ Undersampling had the highest recall (77.2%) but the lowest precision (11%), leading to too many false positives.  
+
++ SMOTE achieved the best F1-score (0.2516), but its lower recall (38.9%) means it missed many actual dissatisfied customers.  
+
++ Class Weighted stood out by offering a strong balance:  
+
+  + Recall: 65.8%
+
+  + Precision: 14.9%
+
+  + F1-score: 0.2436
+
+*Given these results, class weighting is the most reliable method, effectively identifying dissatisfied customers while keeping false positives within a reasonable range.*    
+
+**After balancing:**
+
+![Balanced Class Distribution](visuals/balanced.png)  
+*Balanced class distribution after applying Class weighting Method*
+
+> Balancing the dataset improved recall for the minority class, ensuring the model is not biased toward predicting only satisfied customers.
+
+---
+
+#### ROC Curve Comparison
+
+To evaluate the performance of the models (Random Forest and XGBoost), their ROC curves are:
+
+![ROC Curve](roc_curve.png)  
+*ROC curves for both models — XGBoost outperforms Random Forest in AUC*
+
+> The ROC curves show that XGBoost achieves a slightly better true positive rate at most thresholds, confirming its strength for this binary classification task.
 
 
 ## Problem Formulation
